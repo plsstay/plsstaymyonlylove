@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance is just a test of love...</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+        :root {
+            --main-pink: #ff85a1;
+            --deep-red: #ff4d6d;
+            --soft-bg: #fff0f3;
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor for our custom heart */
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffc1cc 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Custom Heart Cursor */
+        #cursor {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            background: var(--deep-red);
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Background Floating Hearts */
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.15);
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Glassmorphism Card */
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 50px rgba(255, 77, 109, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            z-index: 10;
+            transition: all 0.6s ease;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-red);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        #message {
+            font-size: 1
