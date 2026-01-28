@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-pink: #ffe5ec;
+            --hot-pink: #ff85a1;
+            --deep-red: #c9184a;
+            --accent-red: #ff4d6d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #fff0f3 0%, #ffb3c1 100%);
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* Animated Floating Background Hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) scale(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* The Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(201, 24, 74, 0.15);
+            text-align: center;
+            max-width: 500px;
+            width: 92%;
+            position: relative;
+            z-index: 10;
+            border: 2px solid white;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--deep-red);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .heart-loader {
+            color: var(--accent-red);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            animation: beat 1.2s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .message-area {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            min-height: 160px;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 60px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #yes-btn {
+            background: linear-gradient(45deg, var(--accent-red), var(--deep-red));
+            color: white;
+        }
+
+        #yes-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        #no-btn {
+            background: white;
+            color: #999;
+            border: 1px solid #eee;
+        }
+
+        /* Success State */
+        .hidden { display: none; opacity: 0; }
+
+        .celebration h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--deep-red);
+            font-size: 2.5rem;
+            margin-top: 15px;
+        }
+
+        .miles-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--hot-pink);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg-hearts"></div>
+
+    <div class="card" id="main-card">
+        <div id="content">
+            <div class="miles-text">Thousands of miles • One heart</div>
+            <div class="heart-loader">❤️</div>
+            <h1>To my favorite person...</h1>
+            <div class="message-area" id="typing-box"></div>
+            
+            <div class="btn-container">
+                <button class="btn" id="yes-btn">Yes, I'd love to!</button>
+                <button class="btn" id="no-btn">Maybe not?</button>
+            </div>
+        </div>
+
+        <div id="success-message" class="hidden">
+            <div class="heart-loader" style="font-size: 4rem;">💖</div>
+            <h2>I can't wait!</h2>
+            <p style="margin-top: 15px; color: #555;">The distance is just temporary, but my love for you is forever. You've made me the happiest person in the world! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Smooth Background Animation
+        function createBgHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.getElementById('bg-hearts').appendChild(heart);
+            setTimeout(() =>
